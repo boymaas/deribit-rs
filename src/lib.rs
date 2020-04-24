@@ -109,12 +109,17 @@ impl Deribit {
                                 }
                             } else {
                                 let fut = stx.send(msg);
-                                let fut = timeout(Duration::from_millis(1),fut, );
+                                let fut = timeout(Duration::from_millis(10),fut, );
                                 match fut.await {
                                     Ok(Ok(_)) => {}
                                     Ok(Err(ref e)) if e.is_disconnected() => sdropped = true,
                                     Ok(Err(e)) => { unreachable!("[Servo] futures::mpsc won't complain channel is full") }, // MPSC ERROR
-                                    Err(_) => { warn!("[Servo] Subscription channel is full") }, // Elapsed
+                                    Err(_) => {
+                                        // when this happens we do not want to drop
+                                        // messages as such we panic! There must always
+                                        // be anough buffer to push messages to
+                                        panic!("[Servo] Subscription channel is full")
+                                    }, // Elapsed
                                 }
                             }
                         }

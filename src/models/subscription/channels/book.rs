@@ -12,7 +12,7 @@ pub enum Delta {
 pub struct OrderBookDelta(pub Delta, pub f64, pub f64);
 
 #[derive(Deserialize, Serialize, Debug, Clone)]
-#[serde(deny_unknown_fields)]
+//#[serde(deny_unknown_fields)]
 pub struct BookData {
     pub asks: Vec<OrderBookDelta>,
     pub bids: Vec<OrderBookDelta>,
