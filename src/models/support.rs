@@ -33,7 +33,7 @@ impl Request for HelloRequest {
 
 #[derive(Deserialize, Serialize, Debug, Clone, Default)]
 pub struct TestRequest {
-    pub expected_result: Option<String>,
+    // pub expected_result: Option<String>,
 }
 
 impl TestRequest {
@@ -43,7 +43,7 @@ impl TestRequest {
 
     pub fn expect(result: &str) -> Self {
         Self {
-            expected_result: Some(result.into()),
+            // expected_result: Some(result.into()),
         }
     }
 }
