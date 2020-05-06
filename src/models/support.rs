@@ -41,11 +41,11 @@ impl TestRequest {
         Self::default()
     }
 
-    pub fn expect(result: &str) -> Self {
-        Self {
-            // expected_result: Some(result.into()),
-        }
-    }
+    // pub fn expect(result: &str) -> Self {
+    //     Self {
+    //         //expected_result: Some(result.into()),
+    //     }
+    // }
 }
 
 #[derive(Deserialize, Serialize, Debug, Clone)]
